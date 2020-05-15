@@ -51,7 +51,9 @@ ylabel('number of wells $n$','Fontsize',18); hold off;
 
 
 figure();   % sustainable storage volume V_M
-[C,h] = contour(d_list, well_list,V_M,'color', [.6 .6 .6], 'linewidth', 1);  hold on;  
+levels_nr = 20; %logspace(log(0.1),log(max(V_M(:))),15);
+[C,h] = contour(d_list, well_list,V_M,levels_nr,'color', [.6 .6 .6], 'linewidth', 1);  hold on;  
+h.LevelList=round(h.LevelList,2) ;
 clabel(C,h, 'Fontsize', 12, 'FontWeight','bold', 'color',[.6 .6 .6]);
 plot(d_max, well_list,'linewidth',2,'color','r'); 
 set(gca,'FontSize',12);
