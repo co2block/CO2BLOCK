@@ -12,7 +12,7 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
     end
     
     if dist_max == 'auto'                                                   % calculate maximum interwell distance if not set
-        dist_max = sqrt(area_res)/2;
+        dist_max = sqrt(2*area_res)/2;
     end
     
     d_list = linspace(dist_min,dist_max,nr_dist) ;                          % inter-well distance list
