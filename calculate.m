@@ -25,7 +25,12 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
     w_id = 0 ;
 
     for x_grid_num = 1:sqrt(nr_well_max)                                    % number of wells on a horizontal row
-        for y_grid_num = x_grid_num:x_grid_num+1                            % number of wells on a  vertical row
+        if x_grid_num*(x_grid_num+1) < nr_well_max
+            plus = 1;
+        else
+            plus = 0;
+        end
+        for y_grid_num = x_grid_num:x_grid_num+plus                         % number of wells on a  vertical row
             w_id = w_id +1 ;                                                % well number scenario ID
             w = x_grid_num*y_grid_num ;                                     % well number for each scenario
             well_list(w_id) = w;                                            % store in vector
