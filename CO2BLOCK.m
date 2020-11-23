@@ -50,7 +50,7 @@ xlabel('inter-well distance $d$ (km)','Fontsize',18);
 ylabel('number of wells $n$','Fontsize',18); hold off;
 
 
-figure();   % sustainable storage volume V_M
+figure();   % sustainable storage mass V_M
 levels_nr = 20; %logspace(log(0.1),log(max(V_M(:))),15);
 [C,h] = contour(d_list, well_list,V_M,levels_nr,'color', [.6 .6 .6], 'linewidth', 1);  hold on;  
 h.LevelList=round(h.LevelList,2) ;
@@ -65,4 +65,4 @@ ylabel('number of wells $n$','Fontsize',18); hold off;
 %% 
 %%%%%%%%%%%%%%%%%%%%  WRITE TABLES  %%%%%%%%%%%%%%%%%%%% 
 writetable(Table_Q,'Q_M_max_per_well_inj_rate.xls', 'WriteRowNames',true);
-writetable(Table_V,'V_M_max_storage_volume.xls', 'WriteRowNames',true);
+writetable(Table_V,'V_M_max_storage_capacity.xls', 'WriteRowNames',true);
