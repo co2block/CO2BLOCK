@@ -4,7 +4,7 @@
 % parameters proposed by Spycher et al. (2003).
 % CO2 viscosity is calculated according to Altunin and Sakhabetdinov (1972)
 
-function [brineviscosity, co2density, co2viscosity] = eos(T,p,salinity)   % T in ºC, p in MPa, salinity in [ppm/1e6]
+function [brineviscosity, co2density, co2viscosity] = eos(T,p,salinity)   % T in ÂºC, p in MPa, salinity in [ppm/1e6]
     
     % brine viscosity 
     brineviscosity =(0.1+0.333*salinity+(1.65+91.9*salinity^3)...
@@ -23,7 +23,7 @@ function [brineviscosity, co2density, co2viscosity] = eos(T,p,salinity)   % T in
     R = 8.314472 ;              % gas constant [m3 Pa K?1 mol?1]
     eqn = x^3-(R*T/p)*x^2-(R*T*b/p-a/p/sqrt(T)+b^2)*x - (a*b/p/sqrt(T)) == 0 ;
     V = vpa(solve(eqn,x,'real',true)) ;      % molar volume [m3/mol]
-    co2density = double(0.044 / V );            % [kg/m3]
+    co2density = double(0.044 / V );         % [kg/m3]
     
     % CO2 viscosity
     a10 = 0.248566120;
@@ -34,7 +34,7 @@ function [brineviscosity, co2density, co2viscosity] = eos(T,p,salinity)   % T in
     a31 = -0.774229021 ;
     a40 = -0.0639070755 ;
     a41 = 0.142507049 ;
-    Tr = T/304;                                 % reduced temperature 
+    Tr = T/304;                                    % reduced temperature 
     dens_r = co2density/468  ;                     % reduced density
     mu_0 = Tr^0.5* (27.2246461 - 16.6346068 /Tr + 4.66920556/(Tr^2))*1e-6 ; %[Pa s]
     co2viscosity = double(mu_0*exp(a10*dens_r + a11*dens_r/Tr + a20*dens_r^2 + a21*dens_r^2/Tr + ...
