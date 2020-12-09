@@ -6,7 +6,7 @@
 % Please, read the file README and the User Guide for instructions.
 % This software is free. Please cite CO2BLOCK as:
 %   https://github.com/co2block/CO2BLOCK 
-% De Simone and Krevor. A tool for..
+% De Simone and Krevor. A tool for first order estimates and optimisation of dynamic storage resource capacity in saline aquifers.
 
 clearvars; close all;
 
