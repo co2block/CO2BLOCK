@@ -7,11 +7,11 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
     R_influence = sqrt(2.246*perm*time/(visc_w*compr));                     % pressure propagation radius for the time of injection
 
     % initialize
-    if nr_well_max == 'auto'                                                % calculate maximum well number if not set
+    if strcmp(nr_well_max,'auto')                                               % calculate maximum well number if not set
         nr_well_max = floor(area_res/(dist_min^2));
     end
     
-    if dist_max == 'auto'                                                   % calculate maximum interwell distance if not set
+    if strcmp(dist_max,'auto')                                                  % calculate maximum interwell distance if not set
         dist_max = sqrt(2*area_res)/2;
     end
     
@@ -63,11 +63,11 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
 
                 switch correction                                              % correction for superposition error (De Simone et al., GRL2019)
                     case 'off'
-                        prefix = '';
+                    %    prefix = '';
                         sup_error = 0 ;
                         b(w_id) = (visc_w-visc_c)/4/pi/perm/thick  ;                   
                     case 'on'  
-                        prefix = 'corrected_' ;
+                     %   prefix = 'corrected_' ;
                         if w < 9 ||  R_influence*csi/(distance^2) < 1
                             sup_error = 0; 
                             b(w_id) = (visc_w-visc_c)/4/pi/perm/thick  ;
@@ -82,7 +82,7 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
         end
     end  
 
-    % calculate injectable per well flow-rate Q_M_each and total storage volume V_M for each scenario
+    % calculate injectable per well flow-rate Q_M_each and total storage capacity V_M for each scenario
     b = repmat(b',1,nr_dist,1);   
     q1 = repmat(Q0_vec',1,nr_dist); 
     well_mat = repmat(well_list',1,nr_dist); 
@@ -107,7 +107,7 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
 
 
     Q_M_tot = Q_M_each.*well_mat ;                     %[ Mton/year]   total sustainable flow rate   
-    V_M = Q_M_tot.*time_yr/1000 ;                      %[Gton] total sustainable injectable volume
+    V_M = Q_M_tot.*time_yr/1000 ;                      %[Gton] total sustainable injectable mass
 
 
     % upper constraint 
@@ -124,10 +124,10 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
     varNames = cellstr(sprintfc('V_M_for_d_%.0f_m',d_list*1000));
     rwNames = cellstr(sprintfc('%d',well_list));
     Table_V = array2table(V_poss,'VariableNames',varNames,'RowNames',rwNames); 
-    Table_V.Properties.DimensionNames{1} = 'well_number';
+    Table_V.Properties.DimensionNames{1} = 'number_of_wells';
 
     varNames = cellstr(sprintfc('Q_M_for_d_%.0f_m',d_list*1000));
     Table_Q = array2table(Q_poss_each,'VariableNames',varNames,'RowNames',rwNames); 
-    Table_Q.Properties.DimensionNames{1} = 'well_number';
+    Table_Q.Properties.DimensionNames{1} = 'number_of_wells';
 
 end
