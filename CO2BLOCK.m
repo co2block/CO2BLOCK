@@ -1,10 +1,12 @@
 % This tool provides estimate of the CO2 storage capacity of a geological
 % reservoir under different scenarios of well number and distance.
 % Wells are placed into a grid configuration with equal number of rows and 
-% columns or with numbers that can differ by 1 as maximum.
+% columns, or with number of row and columns that differ by 1.
 
-% Read the file README for a manual.
-% Free use, not commercial,  cite as ....blabla
+% Please, read the file README and the User Guide for instructions.
+% This software is free. Please cite CO2BLOCK as:
+%   https://github.com/co2block/CO2BLOCK 
+% De Simone and Krevor. A tool for..
 
 clearvars; close all;
 
@@ -40,8 +42,8 @@ set(groot, 'defaultLegendInterpreter','latex');
 
 
 figure();   % sustainable per well flow-rate Q_M_each
-[C,h] = contour(d_list, well_list,Q_M_each,'color', [.6 .6 .6], 'linewidth', 1);  hold on; 
-clabel(C,h, 'Fontsize', 12, 'FontWeight','bold', 'color',[.6 .6 .6]); 
+[C,h] = contour(d_list, well_list,real(Q_M_each),'color', [.6 .6 .6], 'linewidth', 1);  hold on; 
+clabel(C,h, 'Fontsize', 12, 'FontWeight','bold', 'color',[.6 .6 .6]);  
 plot(d_max, well_list,'linewidth',2,'color','r'); 
 set(gca,'FontSize',12);
 xlim([min(d_list),max(d_list)]);
@@ -49,10 +51,9 @@ title('Maximum sustainable per well flow-rate $Q_{M}$ (Mt/yr) ', 'Fontsize',16);
 xlabel('inter-well distance $d$ (km)','Fontsize',18); 
 ylabel('number of wells $n$','Fontsize',18); hold off;
 
-
-figure();   % sustainable storage mass V_M
+figure();   % sustainable storage capacity V_M
 levels_nr = 20; %logspace(log(0.1),log(max(V_M(:))),15);
-[C,h] = contour(d_list, well_list,V_M,levels_nr,'color', [.6 .6 .6], 'linewidth', 1);  hold on;  
+[C,h] = contour(d_list, well_list,real(V_M),levels_nr,'color', [.6 .6 .6], 'linewidth', 1);  hold on;  
 h.LevelList=round(h.LevelList,2) ;
 clabel(C,h, 'Fontsize', 12, 'FontWeight','bold', 'color',[.6 .6 .6]);
 plot(d_max, well_list,'linewidth',2,'color','r'); 
