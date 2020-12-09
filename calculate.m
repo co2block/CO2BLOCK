@@ -63,11 +63,9 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
 
                 switch correction                                              % correction for superposition error (De Simone et al., GRL2019)
                     case 'off'
-                    %    prefix = '';
                         sup_error = 0 ;
                         b(w_id) = (visc_w-visc_c)/4/pi/perm/thick  ;                   
                     case 'on'  
-                     %   prefix = 'corrected_' ;
                         if w < 9 ||  R_influence*csi/(distance^2) < 1
                             sup_error = 0; 
                             b(w_id) = (visc_w-visc_c)/4/pi/perm/thick  ;
