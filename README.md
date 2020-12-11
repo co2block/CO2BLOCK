@@ -12,6 +12,6 @@ If you want to learn more about the theory behind CO2BLOCK, please refer to the 
 Should you have any question/comment/suggestion, please send an email to silviadesi@gmail.com
 
 CO2BLOCK is a free licence software.
-If you use it for academic purpose, please cite the reference paper:
+If you use it for academic purposes, please cite the reference paper:
 
 - De Simone and Krevor (2020) A tool for first order estimates and optimisation of dynamic storage resource capacity in saline aquifers”. under review in International Journal of Greenhouse Gas Control.
