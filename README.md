@@ -1,4 +1,4 @@
-# CO2BLOCK: A tool for estimate of storage resource capacity in saline aquifers
+# CO2BLOCK: A tool for estimates of storage resource capacity in saline aquifers
 
 CO2BLOCK provides the automatic estimate of the storage capacity of an aquifer. 
 
