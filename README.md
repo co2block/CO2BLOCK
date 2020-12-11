@@ -13,4 +13,5 @@ Should you have any question/comment/suggestion, please send an email to silviad
 
 CO2BLOCK is a free licence software.
 If you use it for academic purpose, please cite the reference paper:
-De Simone and Krevor (2020) A tool for first order estimates and optimisation of dynamic storage resource capacity in saline aquifers”. under review in International Journal of Greenhouse Gas Control.
+
+- De Simone and Krevor (2020) A tool for first order estimates and optimisation of dynamic storage resource capacity in saline aquifers”. under review in International Journal of Greenhouse Gas Control.
