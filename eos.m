@@ -21,7 +21,7 @@ function [brineviscosity, co2density, co2viscosity] = eos(T,p,salinity)   % T in
     b = 2.78*10^-5 ;            % constant [m3/mol]
     a = a0+a1*T ;
     R = 8.314472 ;              % gas constant [m3 Pa K?1 mol?1]
-    eqn = x^3-(R*T/p)*x^2-(R*T*b/p-a/p/sqrt(T)+b^2)*x - (a*b/p/sqrt(T)) == 0 ;
+    eqn = x.^3-(R*T/p)*x.^2-(R*T*b/p-a/p/sqrt(T)+b.^2)*x - (a*b/p/sqrt(T)) == 0 ;
     V = vpa(solve(eqn,x,'real',true)) ;      % molar volume [m3/mol]
     co2density = double(0.044 / V );         % [kg/m3]
     
