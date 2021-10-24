@@ -16,7 +16,7 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
     end
     
     d_list = linspace(dist_min,dist_max,nr_dist) ;                          % inter-well distance list
-    M0 = 1 ;                                                                % guess value for total injection rate [Mton/y] - any value
+    M0 = perm/1e-13 ;                                                      % guess value for total injection rate [Mton/y] 
 
 
     b = []; 
