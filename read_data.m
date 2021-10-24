@@ -102,15 +102,15 @@ function [thick,area_res,perm,por,dens_c,visc_c,visc_w,compr,p_lim,rc,...
     end
     
     if dens_c == 0 ||  isnan(dens_c)
-        [~,dens_c,~] = eos(T0_mean, pres0_mean,salinity);
+        [~,dens_c,~] = eos(T0_mean, pres0_mean,salinity,0);
     end
 
     if visc_c == 0 || isnan(visc_c)
-        [~,~,visc_c] = eos(T0_mean, pres0_mean,salinity);
+        [~,~,visc_c] = eos(T0_mean, pres0_mean,salinity, dens_c);
     end
 
     if visc_w == 0 || isnan(visc_w) 
-        [visc_w,~,~] = eos(T0_mean, pres0_mean, salinity) ; 
+        [visc_w,~,~] = eos(T0_mean, pres0_mean, salinity,0) ; 
     end
 
 
