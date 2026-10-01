@@ -15,3 +15,8 @@ CO2BLOCK is a free licence software.
 If you use it for academic purposes, please cite the reference paper:
 
 - De Simone and Krevor (2021) A tool for first order estimates and optimisation of dynamic storage resource capacity in saline aquifers”.  International Journal of Greenhouse Gas Control, 106, 103258. https://doi.org/10.1016/j.ijggc.2021.103258
+
+THIS VERSION (2026) CONTAINS SOME MODIFICATIONS WITH RESPECT TO THE ORIGINAL VERSION:
+1) the pressure build-up is calculated through the full Nordbotten solution (three-zone), not through the two-zone simplified formulation - differences are minor
+2) there is the possibility of activating the Srivastava & Guzman correction, which improves accuracy close to the pressure front 
+3) Nordbotten_solution now includes the case in which the CO2 plume extends outside of the pressurized region (R<csi)

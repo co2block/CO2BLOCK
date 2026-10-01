@@ -1,5 +1,5 @@
 function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
-    = calculate(fpath,fname,correction,dist_min,dist_max,nr_dist,nr_well_max,rw,time_yr,maxQ)
+    = calculate(fpath,fname,correction,Sriv,dist_min,dist_max,nr_dist,nr_well_max,rw,time_yr,maxQ)
 
     %read data
     [thick,area_res,perm,por,dens_c,visc_c,visc_w,compr,p_lim,rc,gamma,delta, omega] = read_data(fpath,fname);
@@ -51,13 +51,12 @@ function [d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V]...
                 Q0 = M0*1e9/dens_c/365/86400/w;                                % injection rate per well [m3/s]
                 Q0_vec(w_id) = Q0;                                             % store in vector
                 csi = sqrt(Q0*time/pi/por/thick);                              % average plume extension [m]
-                psi = exp(omega)*csi;                                          % equivalent plume extension [m]
                 p_c = (Q0*visc_w)/(2*pi*thick*perm)/1e6;                       % characteristic pressure  [MPa]
                 d_min_p(w_id) = 2*csi/1000 ;                                   % minimum interwell distance for each well number case [km]
                 p_sup = 0; 
                 for i = 1:w
                     r = dist_vec(i);
-                    Delta_p = Nordbotten_solution(r,R_influence,psi,rc,gamma)*p_c;       % overpressure according to Nordbotten and Celia solution for overpressure [MPa]
+                    Delta_p = Nordbotten_solution(r,R_influence,csi,rc,gamma,Sriv)*p_c;       % overpressure according to Nordbotten and Celia solution for overpressure [MPa]
                     p_sup = p_sup +  Delta_p ;                                 % superposed overpressure [MPa]
                 end
 

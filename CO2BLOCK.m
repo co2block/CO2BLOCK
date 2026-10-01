@@ -8,6 +8,13 @@
 %   https://github.com/co2block/CO2BLOCK 
 % De Simone and Krevor (2021).  A tool for first order estimates and optimisation of dynamic storage resource capacity in saline aquifers”. International Journal of Greenhouse Gas Control, 106, 103258.
 
+% THIS VERSION CONTAINS SOME MODIFICATIONS WITH RESPECT TO THE ORIGINAL VERSION:
+% 1) the pressure build-up is calculated through the full Nordbotten solution (three-zone), not through the two-zone simplified formulation - differences are minor
+% 2) there is the possibility of activating the Srivastava & Guzman correction, which improves accuracy close to the pressure front 
+% 3) Nordbotten_solution now includes the case in which the CO2 plume 
+% extends outside of the pressurized region (R<csi)
+
+
 clearvars; close all;
 
 %%%%%%  INPUT DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -18,6 +25,7 @@ fname = 'example_data.xlsx';        % name of the input data file
 
 %-- setting parameters
 correction = 'off' ;                % set on/off if you want to apply correction for superposition
+Sriv = 'on'; 						% set on/off if you want to apply the Srivastava & Guzman correction;
 dist_min = 2 ;                      % minimum inter-well distance [km]
 dist_max = 'auto';                  % maximum inter-well distance [km]. Set a number or 'auto' if you prefer automatic calculation
 nr_dist = 30 ;                      % number of inter-well distances to explore
@@ -30,7 +38,7 @@ maxQ = 5 ;                          % maximum sustainable injection rate per wel
 
 %%
 %calculate
-[d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V] = calculate(fpath,fname,correction,dist_min,...
+[d_list,well_list,d_max,Q_M_each,V_M,Table_Q,Table_V] = calculate(fpath,fname,correction,Sriv,dist_min,...
     dist_max,nr_dist,nr_well_max,rw,time_yr,maxQ);
 
 
